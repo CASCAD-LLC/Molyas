@@ -5,16 +5,17 @@ Molyas - установщик *.deb пакетов на Debian-подобных 
 Сначала подготовим среду, нам понадобятся: clang, Qt6 также рекомендуем Qt Creator. Установим Clang:
 
 ```bash
-   sudo apt install clang
+sudo apt install clang
 ```
 Далее установим библиотеки Qt6 и Qt Creator (по желанию):
 
 ```bash
-   sudo apt install qt6-base-dev # библиотеки Qt6
-   sudo apt install qtcreator # рекомендуется, но можете запустить проект другим способом
+sudo apt install qt6-base-dev # библиотеки Qt6
+sudo apt install qtcreator # рекомендуется, но можете запустить проект другим способом
 ```
 После подготовки среды, клонируем репозиторий:
 ```bash
-   git clone https://github.com/CASCAD-LLC/Molyas.git
+git clone https://github.com/CASCAD-LLC/Molyas.git
 ```
 Открываем CMakeLists.txt в Qt Creator и нажимаем на кнопку запуска. Перед нами будет такое окно:
+![image](https://github.com/user-attachments/assets/3e9246d5-da71-4328-943a-e4279b2cf6ac)
