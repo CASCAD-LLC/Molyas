@@ -27,3 +27,7 @@ git clone https://github.com/CASCAD-LLC/Molyas.git
 Перед вами будет файловый диалог, выберите нужный *.deb файл и дождитесь окончания установки, прогресс установки будет виден на шкале прогресса.
 Видео пример использования:
 ![aaa (1)](https://github.com/user-attachments/assets/d80833cc-a1d9-4f6b-8129-65f66c76dc12)
+
+# Поддерживаемые системы
+Molyas поддерживает только Debian-подобные системы.
+Список поддерживаемых систем: Ubuntu, Linux Mint (LMDE), MX Linux, Kali linux (для мамкиных хакеров, к слову, на этой системе и разрабатывается Molyas, Peppermint OS, Kaisen Linux, Raspberry Pi OS, BOSS Linus, SolydXK, Nitrux, Deepin, Endless OS, Slux.
