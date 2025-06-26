@@ -1,5 +1,5 @@
-# Molyas
-Molyas - установщик *.deb пакетов на Debian-подобных системах. Идеален для новичков в Linux. в частности Debian. Не требует знаний терминала.
+# Molyas 2.0
+Molyas - установщик пакетов на Linux системах. Идеален для новичков в Linux. Не требует знаний терминала.
 
 # Использование
 Сначала подготовим среду, нам понадобятся: clang, Qt6 также рекомендуем Qt Creator. Установим Clang:
@@ -29,5 +29,4 @@ git clone https://github.com/CASCAD-LLC/Molyas.git
 ![aaa (1)](https://github.com/user-attachments/assets/d80833cc-a1d9-4f6b-8129-65f66c76dc12)
 
 # Поддерживаемые системы
-Molyas поддерживает только Debian-подобные системы.
-Список поддерживаемых систем: Ubuntu, Linux Mint (LMDE), MX Linux, Kali linux (для мамкиных хакеров, к слову, на этой системе и разрабатывается Molyas, Peppermint OS, Kaisen Linux, Raspberry Pi OS, BOSS Linus, SolydXK, Nitrux, Deepin, Endless OS, Slux.
+Molyas 2.0 поддерживает только Debian, Fedora и Arch-подобные системы.
