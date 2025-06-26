@@ -18,6 +18,8 @@ qt_add_executable(Molyas-installer
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    distrodetector.h
+    distrodetector.cpp
 )
 
 target_link_libraries(Molyas-installer PRIVATE

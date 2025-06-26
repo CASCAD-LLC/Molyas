@@ -9,7 +9,7 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    virtual ~MainWindow();  // Явно объявляем виртуальный деструктор
+    virtual ~MainWindow();
 
 private slots:
     void on_pushButton_clicked();
@@ -18,4 +18,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QProcess *installProcess;
+    QString currentPackageManager;
+    QString currentPackageTypeFilter;
 };

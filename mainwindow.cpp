@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "distrodetector.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDebug>
@@ -11,17 +12,26 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    DistroDetector::PackageType distro = DistroDetector::detectDistro();
+    currentPackageManager = DistroDetector::packageManagerCommand(distro);
+    currentPackageTypeFilter = DistroDetector::packageTypeName(distro);
+
+    ui->label->setText(QString("Вас приветствует Molyas Installer - мастер установки %1 пакетов")
+                           .arg(DistroDetector::packageTypeName(distro).split(' ').first()));
+
     // Настройка процесса
     installProcess->setProcessChannelMode(QProcess::MergedChannels);
 
     connect(installProcess, &QProcess::readyReadStandardOutput, this, [this]() {
         QString output = QString::fromUtf8(installProcess->readAllStandardOutput());
-        qDebug() << "DPKG output:" << output;
+        qDebug() << "Output:" << output;
 
-        if (output.contains("Unpacking") || output.contains("Распаковывается")) {
+        if (output.contains("Unpacking") || output.contains("Распаковывается") ||
+            output.contains("Preparing") || output.contains("Подготовка")) {
             ui->progressBar->setValue(30);
         }
-        else if (output.contains("Setting up") || output.contains("Настраивается")) {
+        else if (output.contains("Setting up") || output.contains("Настраивается") ||
+                 output.contains("Installing") || output.contains("Установка")) {
             ui->progressBar->setValue(70);
         }
     });
@@ -40,14 +50,27 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    QString debFile = QFileDialog::getOpenFileName(this, "Выберите .deb файл", "",
-                                                   "Debian Package (*.deb)");
-    if (debFile.isEmpty()) return;
+void MainWindow::on_pushButton_clicked() {
+    QString pkgFile = QFileDialog::getOpenFileName(this,
+                                                   "Выберите пакет",
+                                                   "",
+                                                   currentPackageTypeFilter);
+    if (pkgFile.isEmpty()) return;
 
     ui->progressBar->setValue(0);
-    installProcess->start("pkexec", {"dpkg", "-i", "--force-all", debFile});
+
+    QStringList args;
+    if (currentPackageManager == "dpkg") {
+        args = {"dpkg", "-i", "--force-all", pkgFile};
+    }
+    else if (currentPackageManager == "rpm") {
+        args = {"rpm", "-i", pkgFile};
+    }
+    else if (currentPackageManager == "pacman") {
+        args = {"pacman", "-U", pkgFile};
+    }
+
+    installProcess->start("pkexec", args);
 }
 
 void MainWindow::on_installFinished(int exitCode)
